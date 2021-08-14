@@ -61,4 +61,15 @@ contract NonFungibleToken4 is ERC721, ERC721Enumerable, ERC721URIStorage, Pausab
     {
         return super.supportsInterface(interfaceId);
     }
+
+    function getAllURI() public view returns(string[] memory) {
+        uint256 totalSupply = totalSupply();
+        string[] memory uris = new string[](totalSupply);
+        uint256 counter;
+        for (counter = 0; counter < totalSupply; counter++) {
+            string memory currentUri = tokenURI(counter);
+            uris[counter] = currentUri;
+        }
+        return uris;
+    }
 }
